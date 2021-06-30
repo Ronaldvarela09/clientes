@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function ModalEditCustomer({openModalEdit, handleClose, customer, handleFormEditCustomer}) {
-    const classes = useStyles();
+    const classes = useStyles()
     const [formCustomer, setFormCustomer] = useState({
         identificacion: '',
         nombre: '',
         edad: '',
-        fechaNacimiento: ""
+        fechaNacimiento: ''
     })
 
     useEffect(() => {
@@ -41,10 +41,11 @@ function ModalEditCustomer({openModalEdit, handleClose, customer, handleFormEdit
                 identificacion: !!customer.identificacion ? customer.identificacion : '',
                 nombre: !!customer.nombre ? customer.nombre : '',
                 edad: !!customer.edad ? customer.edad : '',
-                fechaNacimiento: !!customer.fechaNacimiento ? moment(customer.fechaNacimiento).locale('es').format('YYYY-MM-DD') : ''
+                fechaNacimiento: !!customer.fechaNacimiento ?
+                    moment(customer.fechaNacimiento).locale('es').format('YYYY-MM-DD') : ''
             })
         }
-    }, [customer, setFormCustomer])
+    }, [customer])
 
     const handleChange = (event) => {
         setFormCustomer({
@@ -62,42 +63,37 @@ function ModalEditCustomer({openModalEdit, handleClose, customer, handleFormEdit
             >
 
                 <DialogTitle id="customized-dialog-title" className={classes.header}>
-                    <Typography variant="h6" gutterBottom align="center">Editar información del cliente</Typography>
+                    <div>
+                        <Typography variant="h6" gutterBottom align="center">Editar información del cliente</Typography>
+                    </div>
                 </DialogTitle>
                 <DialogContent dividers>
 
                     <Grid container spacing={1} alignContent="center">
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <TextField
-                                name="identificacion" variant="outlined" fullWidth margin="dense"
-                                label="Identificación"
-                                onChange={handleChange} value={formCustomer.identificacion}
+                                id="identificacion" name="identificacion" variant="outlined" fullWidth margin="dense"
+                                label="Identificación" onChange={handleChange} value={formCustomer.identificacion}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <TextField
-                                name="nombre" variant="outlined" fullWidth margin="dense" label="Nombre"
+                                id="nombre" name="nombre" variant="outlined" fullWidth margin="dense" label="Nombre"
                                 onChange={handleChange} value={formCustomer.nombre}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <TextField
-                                name="edad" variant="outlined" fullWidth margin="dense" label="Edad"
+                                id="edad" name="edad" variant="outlined" fullWidth margin="dense" label="Edad"
                                 onChange={handleChange} value={formCustomer.edad}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <TextField
-                                name="fechaNacimiento"
-                                label="Fecha nacimiento"
-                                type="date"
-                                onChange={handleChange}
-                                variant="outlined" fullWidth margin="dense"
-                                value={formCustomer.fechaNacimiento}
-                                className={classes.textField}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
+                                id="fechaNacimiento" name="fechaNacimiento" label="Fecha nacimiento" type="date"
+                                onChange={handleChange} variant="outlined" fullWidth margin="dense"
+                                value={formCustomer.fechaNacimiento} className={classes.textField}
+                                InputLabelProps={{shrink: true}}
                             />
                         </Grid>
                     </Grid>
@@ -113,7 +109,7 @@ function ModalEditCustomer({openModalEdit, handleClose, customer, handleFormEdit
 
             </Dialog>
         </div>
-    );
+    )
 }
 
-export default ModalEditCustomer;
+export default ModalEditCustomer

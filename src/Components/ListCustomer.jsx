@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton'
 import Create from '@material-ui/icons/Create'
 import OpenInNew from '@material-ui/icons/OpenInNew'
 import Tooltip from '@material-ui/core/Tooltip'
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const StyledTableCell = withStyles((theme: Theme) =>
     createStyles({
@@ -52,47 +54,60 @@ function ListCustomer({data, handleOpenModalEditCustomer, handleClickDetailsCust
     const classes = useStyles();
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Identificación</StyledTableCell>
-                        <StyledTableCell align="center">Nombre</StyledTableCell>
-                        <StyledTableCell align="center">Edad</StyledTableCell>
-                        <StyledTableCell align="center">Fecha de nacimiento</StyledTableCell>
-                        <StyledTableCell align="center">Opciones</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map((data) => (
-                        <StyledTableRow key={data.identificacion}>
-                            <StyledTableCell component="th" scope="row">
-                                {data.identificacion}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">{data.nombre}</StyledTableCell>
-                            <StyledTableCell align="center">{data.edad}</StyledTableCell>
-                            <StyledTableCell
-                                align="center">{moment(data.fechaNacimiento).locale('es').format('D/M/Y')}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                <Tooltip title="Ver detalle">
-                                    <IconButton onClick={() => handleClickDetailsCustomer(data.identificacion)}
-                                                color="primary" aria-label="upload picture" component="span" >
-                                        <OpenInNew/>
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip title="Editar">
-                                    <IconButton color="primary" aria-label="upload picture" component="span"
-                                                onClick={() => handleOpenModalEditCustomer(data.identificacion)}>
-                                        <Create/>
-                                    </IconButton>
-                                </Tooltip>
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <React.Fragment>
+            <Grid container spacing={1}>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Typography variant="h6" align="center" gutterBottom>
+                        Lista de clientes
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>Identificación</StyledTableCell>
+                                    <StyledTableCell align="center">Nombre</StyledTableCell>
+                                    <StyledTableCell align="center">Edad</StyledTableCell>
+                                    <StyledTableCell align="center">Fecha de nacimiento</StyledTableCell>
+                                    <StyledTableCell align="center">Opciones</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {data.map((data) => (
+                                    <StyledTableRow key={data.identificacion}>
+                                        <StyledTableCell component="th" scope="row">
+                                            {data.identificacion}
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center">{data.nombre}</StyledTableCell>
+                                        <StyledTableCell align="center">{data.edad}</StyledTableCell>
+                                        <StyledTableCell
+                                            align="center">{moment(data.fechaNacimiento).locale('es')
+                                            .format('D/M/Y')}
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center">
+                                            <Tooltip title="Ver detalle">
+                                                <IconButton
+                                                    onClick={() => handleClickDetailsCustomer(data.identificacion)}
+                                                    color="primary" aria-label="upload picture" component="span">
+                                                    <OpenInNew/>
+                                                </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Editar">
+                                                <IconButton color="primary" aria-label="upload picture" component="span"
+                                                            onClick={() => handleOpenModalEditCustomer(data.identificacion)}>
+                                                    <Create/>
+                                                </IconButton>
+                                            </Tooltip>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
+            </Grid>
+        </React.Fragment>
     );
 }
 
