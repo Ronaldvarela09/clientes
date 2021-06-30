@@ -2,7 +2,7 @@ const initialProps = {
     customers: []
 };
 
-export default function (state = initialProps, action) {
+export const customer = (state = initialProps, action) => {
     switch (action.type) {
         case "LOAD_CUSTOMERS":
             return {...state, customers: action.payload}

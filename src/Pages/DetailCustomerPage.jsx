@@ -30,6 +30,10 @@ const DetailCustomerPage = () => {
     const [dataCustomer, setDataCustomer] = useState("")
     const history = useHistory()
 
+    const handleRedirecListCustomer = () => {
+        history.push("/")
+    }
+
     useEffect(() => {
         if (data.length > 0 && !!id) {
             const customer = data.find((customers) => customers.identificacion === id)
@@ -39,25 +43,21 @@ const DetailCustomerPage = () => {
 
     useEffect(() => {
         dispatch(loadCustomers())
-    }, [])
-
-    const handleRedirecListCustomer = () => {
-        history.push("/")
-    }
+    }, [dispatch])
 
     return (
         <React.Fragment>
             <Grid container spacing={3}>
-                <Grid item item xs={12} sm={12} md={12} lg={12} xl={12}
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}
                       className={classes.header}>
                     <Typography variant="h6" align="center" gutterBottom>
                         Información del cliente
                     </Typography>
                 </Grid>
-                <Grid item item xs={12} sm={12} md={12} lg={12} xl={12}>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                     <DetailCustomer data={dataCustomer}/>
                 </Grid>
-                <Grid item item xs={12} sm={12} md={12} lg={12} xl={12}>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                     <Button
                         variant="contained"
                         color="primary"
